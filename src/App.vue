@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main id="app">
+    <header>
+      <h1>
+        <router-link to="/">RECEPTIA</router-link>
+      </h1>
+      <Auth></Auth>
+      <Cart></Cart>
+    </header>
+    <router-view />
+    <aside>
+      <nav>
+        <router-link to="/foods/burgers">Burgers</router-link>
+        <router-link to="/foods/soups">Soups</router-link>
+        <router-link to="/foods/desserts">Desserts</router-link>
+      </nav>
+    </aside>
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import Cart from '@/components/Cart'
+  import Auth from '@/components/Auth'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    components:{
+      Cart,
+      Auth
+    },
+    created(){
+      // check authentication
+      this.$store.dispatch('checkAuth')
+      // load cart
+      this.$store.dispatch('loadCart')
+    }
   }
-}
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style src="./style.css">
 </style>

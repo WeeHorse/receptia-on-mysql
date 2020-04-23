@@ -1,0 +1,164 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css);
+@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
+@import url(https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Monoton|Rubik:900|Bungee+Inline|Cinzel|Fugaz+One|Kodchasan|Poiret+One|Prosto+One|Raleway+Dots|Rubik|Jaldi);
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color:darkred;
+  background-image:url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2017%2F10%2F22%2F21%2F42%2Fknife-2879383_640.jpg&f=1&nofb=1);
+  background-attachment: fixed;
+  background-size:cover;
+  width:100vw;
+  font-family: 'Jaldi', sans-serif;
+}
+
+header{
+  color:white;
+}
+
+h1{
+  font-family: 'Kodchasan', cursive;
+  font-style: italic;
+  word-spacing:0.5em;
+  height:15vh;
+  margin-top:-17px;
+  font-size:490%;
+  text-shadow: 5px 7px 1px darkred;
+}
+h1>a{
+  color: inherit;
+  text-decoration: none;
+}
+main{
+  min-height:80vh;
+  padding:7vh 5vw 0vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+aside{
+  height:71vh;
+  margin-left:2vw;
+  padding:1vw;
+  min-width:17vw;
+}
+aside nav{
+  display:flex;
+  flex-direction:column;
+  text-align:right;
+  position:fixed;
+  right:0.5vw;
+  top:4vh;
+  background-color:rgba(0,0,0,0.7);
+  padding:20px;
+  border-radius:50%;
+}
+nav a{
+  text-decoration:none;
+  color:white;
+  font-size:2.3vw;
+  line-height:1.3em;
+  font-family: 'Kodchasan', cursive;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px black;
+}
+section{
+  background-color:rgba(255,255,255,0.8);
+  border-radius:0 0 20px 0;
+  box-shadow: 4px 4px 5px rgba(0,0,0,0.3);
+  margin-bottom:10vh;
+  overflow:hidden;
+  background-size:cover;
+  background-repeat:no-repeat;
+  padding-left:60vw;
+  display:flex;
+}
+.intro{
+  margin-bottom:10vh;
+  border-radius:50px;
+}
+.intro.text{
+  background-color: rgba(150,55,0,0.9);
+  color:white;
+  padding:30px 40px 20px;
+}
+
+.text{
+  padding:3vh 4vw 2vh 3vw;
+  flex-grow:1;
+  background-color:rgba(255,255,255,0.8);
+  box-shadow: -5px 0px 10px rgba(0,0,0,0.6);
+}
+.text h2, h4{
+  margin:0;
+  font-family: 'Kodchasan', cursive;
+}
+.text p{
+  font-size: 110%;
+}
+
+.icons{
+  margin-top:1.5vh;
+  display:flex;
+  font-size:80%;
+}
+.icons>div{
+  margin-right:1vw;
+}
+
+section:nth-child(even){
+  justify-content:flex-end;
+  border-radius:0 0 0 20px;
+  padding-left:0;
+  padding-right:60vw;
+}
+
+section:nth-child(even) .text{
+  box-shadow: 5px 0px 10px rgba(0,0,0,0.6);
+}
+
+.cart{
+  border-radius:20px;
+  margin-bottom:2vh;
+  padding:0.5vh;
+  padding-left:3vw;
+  background:maroon;
+}
+.cart ul{
+  font-style:italic;
+  list-style: none;
+  padding-left: 0;
+}
+.add-to-cart{
+  font-style:italic;
+  font-size: 90%;
+}
+
+
+@media screen and (max-width:700px){
+  h1{
+    font-size:370%;
+    margin-top:0;
+    margin-bottom:30px;
+  }
+  article{
+    flex-direction:column;
+  }
+  nav{
+    position:absolute !important;
+    top:6.5vh !important;
+    right:5vw !important;
+  }
+  aside{
+    height:0;
+  }
+  section:last-child{
+    margin-bottom:10vh !important;
+  }
+}
+
