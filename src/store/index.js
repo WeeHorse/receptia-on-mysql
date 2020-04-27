@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import fetch from 'isomorphic-fetch'
+//import fetch from 'isomorphic-fetch' // för både "normal" klient och testning i cmd line
 
 Vue.use(Vuex)
 
@@ -19,31 +19,38 @@ export default new Vuex.Store({
       data:[]
     },
     user:{
-      loggedIn: false
+      loggedIn: false,
+      first_name: '',
+      last_name: '',
+      phone: '',
+      adress:{
+        street:'',
+        zip:'',
+        city:''
+      }
     }
   },
   mutations: {
-    // addToCart(state, value){
-    //   let found = false
-    //   for(let item of state.cart.items){
-    //     // om jag redan lagt till ett exemplar
-    //     if(item.title === value.title){
-    //       item.amount++
-    //       found = true
-    //       break
-    //     }
-    //   }
-    //   // annars (om det är en ny item)
-    //   if(!found){
-    //     state.cart.items.push(value)
-    //   }
-    //   console.log(state.cart.items)
-    // },
     setFoodsData(state, value){
       state.foods.data = value
     },
     setUser(state, value){
+      if(!value.adress){
+        value.adress = {}
+      }
       state.user = value
+    },
+    setUserFirstName(state, value){
+      state.user.first_name = value
+    },
+    setUserLastName(state, value){
+      state.user.last_name = value
+    },
+    setUserPhone(state, value){
+      state.user.phone = value
+    },
+    setUserAdress(state, value){
+      state.user.adress = value
     },
     setCart(state, value){
       state.cart.items = value
@@ -51,7 +58,7 @@ export default new Vuex.Store({
   },
   actions: {
     async loadFoodsData({commit}){
-      let response = await fetch('http://localhost:8080/rest/foods')
+      let response = await fetch('/rest/foods')
       let data = await response.json()
       for(let item of data){
         item.amount = 0 // for the cart
@@ -59,7 +66,7 @@ export default new Vuex.Store({
       commit('setFoodsData', data)
     },
     async login({commit}, credentials){
-      let response = await fetch('http://localhost:8080/rest/login',{
+      let response = await fetch('/rest/login',{
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)
@@ -68,12 +75,12 @@ export default new Vuex.Store({
       commit('setUser', user)
     },
     async checkAuth({commit}){
-      let response = await fetch('http://localhost:8080/rest/login')
+      let response = await fetch('/rest/login')
       let user = await response.json()
       commit('setUser', user)
     },
     async addToCart({dispatch}, item){
-      let response = await fetch('http://localhost:8080/rest/cart-item',{
+      let response = await fetch('/rest/cart-item',{
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -85,7 +92,7 @@ export default new Vuex.Store({
       dispatch('loadCart')
     },
     async loadCart({commit}){
-      let cartResponse = await fetch('http://localhost:8080/rest/cart')
+      let cartResponse = await fetch('/rest/cart')
       let cartResult = await cartResponse.json()
       commit('setCart', cartResult)
     }

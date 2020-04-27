@@ -122,12 +122,14 @@ section:nth-child(even) .text{
   box-shadow: 5px 0px 10px rgba(0,0,0,0.6);
 }
 
-.cart{
+.cart, .order{
   border-radius:20px;
   margin-bottom:2vh;
   padding:0.5vh;
   padding-left:3vw;
   background:maroon;
+  display:flex;
+  justify-content: space-between;
 }
 .cart ul{
   font-style:italic;
@@ -138,7 +140,23 @@ section:nth-child(even) .text{
   font-style:italic;
   font-size: 90%;
 }
-
+.button{
+  height: 2em;
+  align-self: flex-end;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-radius: 5px;
+}
+.order{
+  flex-direction: column;
+  background:teal;
+}
+.order>div{
+  padding:2vh 0;
+}
+.order>div>input{
+  margin-right:0.5vw;
+}
 
 @media screen and (max-width:700px){
   h1{

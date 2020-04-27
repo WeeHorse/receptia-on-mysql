@@ -10,10 +10,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "fetch-mock": "^9.4.0",
-    "fetch-mock-jest": "^1.2.7",
-    "isomorphic-fetch": "^2.2.1",
-    "node-fetch": "^2.6.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2",
@@ -32,6 +28,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "jest-fetch-mock": "^3.0.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -64,6 +61,10 @@
     },
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
-    }
+    },
+    "automock": false,
+    "setupFiles": [
+      "./tests/unit/setupJest.js"
+    ]
   }
 }
