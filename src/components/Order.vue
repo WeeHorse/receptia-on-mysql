@@ -7,9 +7,9 @@
       <input v-model="phone" placeholder="Enter your phone number" />
     </div>
     <div>
-      <input v-model="street" placeholder="Enter your shipping adress" />
-      <input v-model="zip" placeholder="Enter your shipping zip code" />
-      <input v-model="city" placeholder="Enter your shipping city" />
+      <input v-model="street" placeholder="Enter your delivery street adress" />
+      <input v-model="zip" placeholder="Enter your delivery zip code" />
+      <input v-model="city" placeholder="Enter your delivery city" />
     </div>
     <button class="button" @click="sendOrder">Send order</button>
   </form>
@@ -20,6 +20,7 @@
     methods:{
       sendOrder(e){
         e.preventDefault();
+        alert('Order would now be detailed, confirmed and sent')
       }
     },
     computed:{

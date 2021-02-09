@@ -31,6 +31,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setHomeTitle(state, value){
+      state.home.title = value
+    },
+    setHomeText(state, value){
+      state.home.text = value
+    },
     setFoodsData(state, value){
       state.foods.data = value
     },
@@ -65,18 +71,19 @@ export default new Vuex.Store({
       }
       commit('setFoodsData', data)
     },
-    async login({commit}, credentials){
+    async login({dispatch}, credentials){
       let response = await fetch('/rest/login',{
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)
       })
-      let user = await response.json()
-      commit('setUser', user)
+      await response.json()
+      dispatch('checkAuth')
     },
     async checkAuth({commit}){
       let response = await fetch('/rest/login')
-      let user = await response.json()
+      let data = await response.json()
+      let user = data
       commit('setUser', user)
     },
     async addToCart({dispatch}, item){

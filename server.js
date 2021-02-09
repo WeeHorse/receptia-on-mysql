@@ -57,6 +57,17 @@ app.get('/rest/cart', async (request, response) => {
   response.json(cart)
 })
 
+app.delete('/rest/cart', async (request, response) => {
+  // check if user exists before writing
+  if(!request.session.user){
+    response.status(401) // unauthorised
+    response.json({error:'not logged in'})
+    return;
+  }
+  let result = await db.query('DELETE * FROM cart_items WHERE user = ?', [request.session.user.id])
+  response.json(result)
+})
+
 app.delete('/rest/cart-item/:id', async (request, response) => {
   // check if user exists before writing
   if(!request.session.user){
